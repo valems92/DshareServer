@@ -9,7 +9,7 @@ const
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//flightsUpdate(admin);
+flightsUpdate(admin);
 
 app.post('/newMessage', (req, res) => {
     let body = req.body;

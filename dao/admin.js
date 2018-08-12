@@ -32,9 +32,32 @@ class Admin {
         return searches;
     }
 
-    static sendNotification(registrationToken, payload) {
+    static sendNotification(registrationToken, payload ){
+
         return messaging.sendToDevice(registrationToken, payload);
     }
+
+
+    static updateSearchLeavingTimeInFirebase(searchId,foundSuggestion) {
+        db.ref('/searches/' + searchId).update({
+            foundSuggestion: foundSuggestion});
+    }
+
+    static updateLeavingTimeInFirebase(searchId,leavingTime) {
+        db.ref('/searches/' + searchId).update({
+            leavingTime: leavingTime});
+    }
+
+    static deleteSearch(searchId){
+        let status = ref.child(searchId).remove();
+        if(status)
+            return true;
+        else
+            return false;
+
+    }
+
+
 }
 
 module.exports = Admin;
